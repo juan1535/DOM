@@ -51,7 +51,7 @@ $card_body.append($card_img, $card_paragraph, $button);
 $card.append($card_header, $card_body);
 
 //  insertAdjacent
-$cards.append($card);
+// $cards.append($card);
 // $cards.insertAdjacentElement("beforebegin",$card);
 $cards.insertAdjacentElement("afterbegin", $card);
 // $cards.insertAdjacentElement("beforeend", $card);
@@ -64,6 +64,7 @@ $cards.insertAdjacentElement("afterbegin", $card);
 const array = [...$cards.children]
 array.map((item, index, array) => {
     
+   
     for (let i = 0; i < array.length; i++) {
         
         if (index % 2 == 0) {
@@ -71,11 +72,29 @@ array.map((item, index, array) => {
             item.querySelector('a.button').classList.toggle('bg-error')
             
         } else {
-            
-            
+        
             item.querySelector('a.button').classList.toggle('bg-white')
         }
 
+        if (index === 4) {
+            item.style.background = '#fff'
+            // console.log(item);
+            // $cards.removeChild(item)
+            
+            // $cards.querySelector('#cards').removeChild($cards);
+            }
+        }
+
+
+        // return item();
+    })
+
+    for (let i = array.length - 1; i >= 0; --i) {
+        array[i].remove();
     }
-    // return item();
-})
+    
+    // $cards.querySelector('#cards').removeChild();
+
+    // $cards.remove();
+    // console.log($cards);
+    

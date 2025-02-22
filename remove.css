@@ -170,3 +170,11 @@ section {
 .before {
   color: var(--sycamore);
 }
+
+.bg-white {
+ background-color: #fff;
+}
+
+.bg-error {
+    background-color: red;
+}
