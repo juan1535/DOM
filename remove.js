@@ -97,4 +97,3 @@ array.map((item, index, array) => {
 
     // $cards.remove();
     // console.log($cards);
-    
