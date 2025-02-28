@@ -1,4 +1,3 @@
-const formulario = document.querySelector('#formulario');
 const nombre = document.querySelector('#nombre');
 const apellido = document.querySelector('#apellido');
 const telefono = document.querySelector('#telefono');
@@ -6,39 +5,79 @@ const documento = document.querySelector('#documento');
 const usuario = document.querySelector('#usuario');
 const contrasena = document.querySelector('#contrasena');
 const button = document.querySelector('#button');
-const body = document.body;
+const formulario = document.querySelector('#formulario');
+// const body = document.body;
 
-const ciudades = async () => {
-    const data = await fetch('data.json')
-    const ciudades = await data.json();
-    console.log(ciudades);
-}
+// Se creó el select
+const $select = document.createElement('select')
 
-ciudades()
+//  Agregamos los estilos css 
+$select.classList.add("input")
 
-const validar  = (event) => {
+// Agregamos las opciones
+
+const opcionDefault = document.createElement("option");
+opcionDefault.textContent = "Select a city";
+opcionDefault.value = "";
+opcionDefault.disabled = true;
+opcionDefault.selected = true;
+$select.appendChild(opcionDefault)
+
+// Ciudades es eL array del json.
+
+
+async function funcionAsincronaCiudades() {
+    
+    try {
+    
+        const data = await fetch('data.json')
+            const ciudades = await data.json();
+    
+            ciudades.forEach(ciudad => {
+                const option = document.createElement('option');
+                option.value = ciudad.id
+                option.textContent = ciudad.nombre;
+                $select.appendChild(option)    
+                
+            });
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+
+
+    }
+    
+    formulario.insertBefore($select, formulario.firstChild);
+
+    funcionAsincronaCiudades()
+
+
+
+
+// const validar  = (event) => {
    
     // Detenemos el evento
-    event.preventDefault()
-    if (nombre.value == '') {
-        // Validamos que el nombre tenga datos
-        alert('El nombre es obligatorio')
-        nombre.focus()
-    }
-}
+//     event.preventDefault()
+//     if (nombre.value == '') {
+// Validamos que el nombre tenga datos
+//         alert('El nombre es obligatorio')
+//         nombre.focus()
+//     }
+// }
 
-const contextMenu = () => {
-    alert('?')
-}
+// const contextMenu = () => {
+//     alert('?')
+// }
 
-const dblclick = () => {
-    alert('doble click')
-}
+// const dblclick = () => {
+//     alert('doble click')
+// }
 
-const mousedown = () => {
-    alert('El evento funciona cuando se presiona cualquier botón sobre el elemento')
-}
-
+// const mousedown = () => {
+//     alert('El evento funciona cuando se presiona cualquier botón sobre el elemento')
+// }
 
 // button.addEventListener('click', validar)
 // button.removeEventListener('click', validar)
