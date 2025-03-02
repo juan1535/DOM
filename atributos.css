@@ -27,6 +27,7 @@ body {
   line-height: 24px;
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
+  height: 100vh;
 }
 
 header {
@@ -120,7 +121,6 @@ form {
 }
 
 input, select {
-
   display: block;
   width: 90%;
   padding: calc(var(--padding) + 4px);
@@ -170,3 +170,72 @@ button:hover {
   background: var(--heavyMetal);
   color: var(--starship);
 }
+
+
+label {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+
+.optionsLbl {
+
+  margin-left: 0;
+
+}
+
+.Terms{
+
+  display: flex;
+  margin-left: 20px ;
+  margin-right: 20px ;
+}
+
+input[type="checkbox"] {
+  
+  width: auto;
+  width: 30px;
+
+}
+
+button:disabled {
+
+  background-color: rgb(83, 83, 83);
+  color: var(--heavyMetal);
+  border: var(--heavyMetal);
+}
+
+.genderOptions, .LPOptions {
+
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: 20px ;
+  margin-right: 20px ;
+}
+
+.genderOp input[type="radio"], .LPOption input[type="checkbox"] {
+
+  width: 18px;
+  height: 18px;
+  accent-color: var(--starship);
+  margin: 0;
+  padding: 0;
+}
+
+.genderOp, .LPOption {
+
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre radio y texto */
+  padding: 2px;
+}
+
+
+/* select {
+
+  border-radius: 20px;
+  border: none;
+  padding: 3px 10px;
+} */
