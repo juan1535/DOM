@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "lenguajes": "JavaScript"
+    },
+    {
+        "id": 2,
+        "lenguajes": "Java"
+    },
+    {
+        "id": 3,
+        "lenguajes": "Python"
+    },
+    {
+        "id": 4,
+        "lenguajes": "C#"
+    },
+    {
+        "id": 5,
+        "lenguajes": "PHP"
+    }
+]

@@ -233,9 +233,20 @@ button:disabled {
 }
 
 
-/* select {
+#terminos, #labelsito {
+  display: inline;
+  margin:  1rem;
+}
 
-  border-radius: 20px;
-  border: none;
-  padding: 3px 10px;
-} */
+#labelsito {
+  margin-left: -15px;
+}
+
+
+#radioContainer {
+  display: flex;
+}
+
+#checkboxContainer {
+ display: flex;
+}

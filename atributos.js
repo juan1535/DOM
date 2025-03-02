@@ -16,7 +16,9 @@ const $select = document.createElement('select');
 const $checkbox = document.createElement('input');
 const label = document.createElement('label');
 const radioButtonsContainer = document.createElement('div');
-formulario.appendChild(radioButtonsContainer);
+const checkboxContainer = document.createElement('div')
+
+formulario.append(radioButtonsContainer, checkboxContainer);
 
 async function cargarGeneros() {
     try {
@@ -24,7 +26,7 @@ async function cargarGeneros() {
         const data = await fetch('generos.json');
         const genderData = await data.json();
 
-        genderData.forEach(gender => {
+            genderData.forEach(gender => {
             const radioButton = document.createElement('input');
             radioButton.setAttribute('type', 'radio');
             radioButton.setAttribute('name', 'gender');
@@ -35,20 +37,51 @@ async function cargarGeneros() {
             radioLabel.setAttribute('id', `gender-${gender.id}`);
             radioLabel.textContent = gender.gender;
 
-            radioButtonsContainer.appendChild(radioButton);
-            radioButtonsContainer.appendChild(radioLabel);
+            radioButtonsContainer.append(radioButton, radioLabel);
         });
     } catch (error) {
         console.error("Error al cargar el archivo JSON:", error);
     }
 }
 
+async function cargarLenguajes() {
+    
+    try {
+        
+        const data = await fetch('lenguajesProgramacion.json');
+        const lenguajesData = await data.json();
+
+            lenguajesData.forEach(lenguajes => {
+            const $checkbox = document.createElement('input');
+            $checkbox.setAttribute('type', 'checkbox');
+            $checkbox.setAttribute('name', 'lenguaje');
+            $checkbox.setAttribute('for', `lenguajes-${lenguajes.id}`);
+            $checkbox.setAttribute('value', lenguajes.lenguajes);
+
+            const checkboxLabel = document.createElement('label');
+            checkboxLabel.setAttribute('id', `lenguajes-${lenguajes.id}`);
+            checkboxLabel.textContent = lenguajes.lenguajes;
+
+            checkboxContainer.append($checkbox, checkboxLabel);
+        });
+
+    } catch (error) {
+        console.error("Error al cargar el archivo JSON:", error);        
+    }
+
+
+}
+
+
 // Llamamos a la función para cargar los géneros
 cargarGeneros();
+cargarLenguajes();
 
 // Se le asignan id
 label.id = "labelsito";
 $checkbox.id = "terminos";
+radioButtonsContainer.id = "radioContainer"
+checkboxContainer.id = "checkboxContainer"
 
 // Agregamos texto
 label.textContent = "Acepto los terminos y condiciones";
@@ -59,21 +92,19 @@ label.textContent = "Acepto los terminos y condiciones";
 
 // Agregar los atributos
 $checkbox.setAttribute('type', "checkbox");
-radio_buttonPrimero.setAttribute('type', 'radio');
-radio_buttonSegundo.setAttribute('type', 'radio');
 
 // Insertarlo antes de validar
 button.insertAdjacentElement("beforebegin", $checkbox);
 button.insertAdjacentElement("beforebegin", label);
-button.insertAdjacentElement("beforebegin", radio_buttonPrimero);
-button.insertAdjacentElement("beforebegin", radio_buttonSegundo);
+button.insertAdjacentElement("beforebegin", radioButtonsContainer);
+button.insertAdjacentElement("beforebegin", checkboxContainer);
 
 //  Agregamos los estilos css 
 $select.classList.add("select");
 
 // Agregamos las opciones
 const opcionDefault = document.createElement("option");
-opcionDefault.textContent = 'Selecciona una ciudad...'; // Corregido a español
+opcionDefault.textContent = 'Select an city...';
 opcionDefault.disabled = true;
 opcionDefault.selected = true;
 $select.appendChild(opcionDefault);
@@ -85,7 +116,6 @@ formulario.insertBefore($select, formulario.firstChild);
 funcionAsincronaCiudades($select);
 
 const validar_checkbox = () => {
-    // Validación del checkbox para habilitar el botón
     ($checkbox.checked) ? button.removeAttribute("disabled") : button.setAttribute("disabled", "");
 };
 
