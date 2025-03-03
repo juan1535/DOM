@@ -180,27 +180,25 @@ label {
 }
 
 .optionsLbl {
-
   margin-left: 0;
-
 }
 
 .Terms{
-
   display: flex;
   margin-left: 20px ;
   margin-right: 20px ;
 }
 
 input[type="checkbox"] {
-  
   width: auto;
   width: 30px;
+}
 
+input[type="radio"] {
+  width: 1rem;
 }
 
 button:disabled {
-
   background-color: rgb(83, 83, 83);
   color: var(--heavyMetal);
   border: var(--heavyMetal);
