@@ -1,18 +1,107 @@
 [
     {
+        
         "id": 1,
-        "nombre": "Bucaramanga"
+        "nombre": "Lebrija"
     },
     {
+        
         "id": 2,
+        "nombre": "Giron"
+    },
+    {
+        
+        "id": 3,
         "nombre": "Piedecuesta"
     },
     {
-        "id": 3,
-        "nombre": "Girón"
-    },
-    {
+        
         "id": 4,
         "nombre": "Floridablanca"
+    },
+    {
+        
+        "id": 5,
+        "nombre": "Aguada"
+    },
+    {
+        "id": 6,
+        "nombre": "Albania"
+    },
+    {
+        "id": 7,
+        "nombre": "Aratoca"
+    },
+    {
+        "id": 8,
+        "nombre": "Barbosa"
+    },
+    {
+        "id": 9,
+        "nombre": "Barichara"
+    },
+    {
+        "id": 10,
+        "nombre": "Barrancabermeja"
+    },
+    {
+        "id": 11,
+        "nombre": "Betulia"
+    },
+    {
+        "id": 12,
+        "nombre": "Bolívar"
+    },
+    {
+        "id": 13,
+        "nombre": "Bucaramanga"
+    },
+    {
+        "id": 14,
+        "nombre": "Cabrera"
+    },
+    {
+        "id": 15,
+        "nombre": "California"
+    },
+    {
+        "id": 16,
+        "nombre": "Capitanejo"
+    },
+    {
+        "id": 17,
+        "nombre": "Carcasí"
+    },
+    {
+        "id": 18,
+        "nombre": "Cepitá"
+    },
+    {
+        "id": 19,
+        "nombre": "Cerrito"
+    },
+    {
+        "id": 20,
+        "nombre": "Charalá"
+    },
+    {
+        "id": 21,
+        "nombre": "Charta"
+    },
+    {
+        "id": 22,
+        "nombre": "Chima"
+    },
+    {
+        "id": 23,
+        "nombre": "Chipatá"
+    },
+    {
+        "id": 24,
+        "nombre": "Cimitarra"
+    },
+    {
+        "id": 25,
+        "nombre": "Concepción"
     }
 ]

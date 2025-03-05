@@ -1,6 +1,7 @@
 import { funcionAsincronaCiudades } from "./ciudades.js";
 import { cargarGeneros } from "./cargarGeneros.js";
 import { cargarLenguajes } from "./lenguajes.js";
+import validar from "./validar.js";
 
     // Creamos las variables y asignamos algo
 
@@ -39,7 +40,9 @@ import { cargarLenguajes } from "./lenguajes.js";
     button.insertAdjacentElement("beforebegin", $checkbox);
     button.insertAdjacentElement("beforebegin", label);
     button.insertAdjacentElement("beforebegin", radioButtonsContainer);
-    button.insertAdjacentElement("beforebegin", checkboxContainer);
+
+    const agregarCheckbox = formulario.querySelector('#radioContainer')
+    agregarCheckbox.insertAdjacentElement("afterend", checkboxContainer);
 
     //  Agregamos los estilos css al input del select
     $select.classList.add("select");
@@ -62,7 +65,6 @@ import { cargarLenguajes } from "./lenguajes.js";
 
     $checkbox.addEventListener("change", validar_checkbox);
 
-    
     // Llamamos a las funciones y sus argumentos
     cargarGeneros(radioButtonsContainer);
     cargarLenguajes(checkboxContainer);    
