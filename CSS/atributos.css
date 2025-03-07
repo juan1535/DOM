@@ -248,3 +248,7 @@ button:disabled {
 #checkboxContainer {
  display: flex;
 }
+
+.error {
+  border: 2px solid red;
+}

@@ -1,7 +1,7 @@
 import { funcionAsincronaCiudades } from "./ciudades.js";
 import { cargarGeneros } from "./cargarGeneros.js";
 import { cargarLenguajes } from "./lenguajes.js";
-import validar from "./validar.js";
+import is_valid from "./validar.js";
 
     // Creamos las variables y asignamos algo
 
@@ -65,10 +65,25 @@ import validar from "./validar.js";
 
     $checkbox.addEventListener("change", validar_checkbox);
 
+
+    button.disabled = true;
+
     // Llamamos a las funciones y sus argumentos
     cargarGeneros(radioButtonsContainer);
     cargarLenguajes(checkboxContainer);    
 
+    formulario.addEventListener('submit', (event) => {
+        if (!is_valid(event, 'form [required]')) {
+             // Si falla en validar no se envía
+            event.preventDefault();
+        }
+    });
+
+    // Seleccionar todos los campos del formulario y hacerlos required
+const camposRequeridos = formulario.querySelectorAll('input, select, textarea');
+camposRequeridos.forEach(campo => {
+    campo.setAttribute('required', true);
+});
 
     // const validar  = (event) => {
     //     Detenemos el evento

@@ -11,6 +11,7 @@ export async function cargarLenguajes() {
                 $checkbox.setAttribute('name', 'lenguaje');
                 $checkbox.setAttribute('id', `lenguajes-${lenguajes.id}`);
                 $checkbox.setAttribute('value', lenguajes.lenguajes);
+                $checkbox.setAttribute('required', true);
 
                 const checkboxLabel = document.createElement('label');
                 checkboxLabel.setAttribute('for', `lenguajes-${lenguajes.id}`);

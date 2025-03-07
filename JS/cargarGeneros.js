@@ -11,6 +11,7 @@ export async function cargarGeneros(radioButtonsContainer) {
             radioButton.setAttribute('name', 'gender'); // Asegúrate de que todos tengan el mismo 'name'
             radioButton.setAttribute('id', `gender-${gender.id}`);
             radioButton.setAttribute('value', gender.gender);
+            radioButton.setAttribute('required', true);
 
             const radioLabel = document.createElement('label');
             radioLabel.setAttribute('for', `gender-${gender.id}`);
