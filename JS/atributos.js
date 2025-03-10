@@ -3,112 +3,71 @@ import { cargarGeneros } from "./cargarGeneros.js";
 import { cargarLenguajes } from "./lenguajes.js";
 import is_valid from "./validar.js";
 
-    // Creamos las variables y asignamos algo
+// Seleccionar elementos del DOM
+const button = document.querySelector('button');
+const formulario = document.querySelector('#formulario');
+const opcionDefault = document.createElement("option");
 
-    // const nombre = document.querySelector('#nombre');
-    // const apellido = document.querySelector('#apellido');
-    // const telefono = document.querySelector('#telefono');
-    // const documento = document.querySelector('#documento');
-    // const usuario = document.querySelector('#usuario');
-    // const contrasena = document.querySelector('#contrasena');
-    // const body = document.body;
-    const button = document.querySelector('button');
-    const formulario = document.querySelector('#formulario');
-    const opcionDefault = document.createElement("option");
-    
-    
-    // Creamos los elementos
-    const $select = document.createElement('select');
-    const $checkbox = document.createElement('input');
-    const label = document.createElement('label');
-    const radioButtonsContainer = document.createElement('div');
-    const checkboxContainer = document.createElement('div')
+// Crear elementos
+const $select = document.createElement('select');
+const $checkbox = document.createElement('input');
+const label = document.createElement('label');
+const radioButtonsContainer = document.createElement('div');
+const checkboxContainer = document.createElement('div');
 
-    // Se le asignan id
-    label.id = "labelsito";
-    $checkbox.id = "terminos";
-    radioButtonsContainer.id = "radioContainer"
-    checkboxContainer.id = "checkboxContainer"
+// Asignar IDs y atributos
+label.id = "labelsito";
+$checkbox.id = "terminos";
+radioButtonsContainer.id = "radioContainer";
+checkboxContainer.id = "checkboxContainer";
 
-    // Agregamos texto
-    label.textContent = "Acepto los terminos y condiciones";
+// Agregar texto y atributos
+label.textContent = "Acepto los terminos y condiciones";
+$checkbox.setAttribute('type', "checkbox");
 
-    // Agregar los atributos
-    $checkbox.setAttribute('type', "checkbox");
+// Insertar elementos en el DOM
+button.insertAdjacentElement("beforebegin", $checkbox);
+button.insertAdjacentElement("beforebegin", label);
+button.insertAdjacentElement("beforebegin", radioButtonsContainer);
 
-    // Insertarlo antes de validar
-    button.insertAdjacentElement("beforebegin", $checkbox);
-    button.insertAdjacentElement("beforebegin", label);
-    button.insertAdjacentElement("beforebegin", radioButtonsContainer);
+const agregarCheckbox = formulario.querySelector('#radioContainer');
+agregarCheckbox.insertAdjacentElement("afterend", checkboxContainer);
 
-    const agregarCheckbox = formulario.querySelector('#radioContainer')
-    agregarCheckbox.insertAdjacentElement("afterend", checkboxContainer);
+// Agregar estilos y opciones al select
+$select.classList.add("select");
+opcionDefault.textContent = 'Select an city...';
+opcionDefault.disabled = true;
+opcionDefault.selected = true;
+$select.appendChild(opcionDefault);
 
-    //  Agregamos los estilos css al input del select
-    $select.classList.add("select");
+formulario.insertBefore($select, formulario.firstChild);
 
-    // Agregamos las opciones
-    opcionDefault.textContent = 'Select an city...';
-    opcionDefault.disabled = true;
-    opcionDefault.selected = true;
-    $select.appendChild(opcionDefault);
+// Llamada a la función para llenar el select con las ciudades
+funcionAsincronaCiudades($select);
 
-    // Ciudades es el array del json.
-    formulario.insertBefore($select, formulario.firstChild);
-    
-    // Llamada a la función para llenar el select con las ciudades
-    funcionAsincronaCiudades($select);
+// Validar el checkbox de términos y condiciones
+const validar_checkbox = () => {
+    button.disabled = !$checkbox.checked;
+};
 
-    const validar_checkbox = () => {
-        ($checkbox.checked) ? button.removeAttribute("disabled") : button.setAttribute("disabled", "");
-    };
+$checkbox.addEventListener("change", validar_checkbox);
 
-    $checkbox.addEventListener("change", validar_checkbox);
+// Deshabilitar el botón inicialmente
+button.disabled = true;
 
+// Cargar géneros y lenguajes
+cargarGeneros(radioButtonsContainer);
+cargarLenguajes(checkboxContainer); // Pasamos checkboxContainer como argumento
 
-    button.disabled = true;
+// Asignar evento de submit al formulario
+formulario.addEventListener('submit', (event) => {
+    if (!is_valid(event, 'form [required]')) {
+        event.preventDefault();
+    }
+});
 
-    // Llamamos a las funciones y sus argumentos
-    cargarGeneros(radioButtonsContainer);
-    cargarLenguajes(checkboxContainer);    
-
-    formulario.addEventListener('submit', (event) => {
-        if (!is_valid(event, 'form [required]')) {
-             // Si falla en validar no se envía
-            event.preventDefault();
-        }
-    });
-
-    // Seleccionar todos los campos del formulario y hacerlos required
+// Hacer que todos los campos sean requeridos
 const camposRequeridos = formulario.querySelectorAll('input, select, textarea');
 camposRequeridos.forEach(campo => {
     campo.setAttribute('required', true);
 });
-
-    // const validar  = (event) => {
-    //     Detenemos el evento
-    //     event.preventDefault()
-    //     if (nombre.value == '') {
-    // Validamos que el nombre tenga datos
-    //         alert('El nombre es obligatorio')
-    //         nombre.focus()
-    //     }
-    // }
-
-    // const contextMenu = () => {
-    //     alert('?')
-    // }
-
-    // const dblclick = () => {
-    //     alert('doble click')
-    // }
-
-    // const mousedown = () => {
-    //     alert('El evento funciona cuando se presiona cualquier botón sobre el elemento')
-    // }
-
-    // button.addEventListener('click', validar)
-    // button.removeEventListener('click', validar)
-    // formulario.addEventListener('contextMenu', contextMenu)
-    // body.addEventListener('dblclick', dblclick)
-    // body.addEventListener('mousedown', mousedown)

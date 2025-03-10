@@ -249,6 +249,16 @@ button:disabled {
  display: flex;
 }
 
+.mensaje-error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
 .error {
-  border: 2px solid red;
+    border: 1px solid red;
+}
+
+.select.error {
+  border: 1px solid red;
 }
