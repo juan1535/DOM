@@ -1,13 +1,42 @@
 const dom = document;
 
+const regexSoloLetras = /^[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+$/;
+const regexSoloNumeros = /^[0-9]+$/;
+const regexAlfanumerico = /^[A-Za-z0-9!@#$%^&*()_+]+$/;
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const nombre = document.querySelector('#nombre');
+    const apellido = document.querySelector('#apellido');
+    const documento = document.querySelector('#documento');
+    const telefono = document.querySelector('#telefono');
+
+    // Restringir entrada en tiempo real
+    const restringirEntrada = (campoTexto, regexFiltro) => {
+        campoTexto.addEventListener('keydown', (event) => {
+            const key = event.key;
+            if (!regexFiltro.test(key) && key !== 'Backspace' && key !== 'Tab') {
+                event.preventDefault();
+            }
+        });
+
+        campoTexto.addEventListener('input', () => {
+            campoTexto.value = campoTexto.value.replace(new RegExp(`[^${regexFiltro.source}]`, 'g'), '');
+        });
+    };
+
+    // Aplicar restricciones
+    restringirEntrada(nombre, regexSoloLetras);
+    restringirEntrada(apellido, regexSoloLetras);
+    restringirEntrada(documento, regexSoloNumeros);
+    restringirEntrada(telefono, regexSoloNumeros);
+});
+
 const is_valid = (event, selector) => {
     event.preventDefault();
     const lista = dom.querySelectorAll(selector);
     let bandera = true;
 
-    const regexSoloLetras = /^[A-Za-z]+$/;
-    const regexSoloNumeros = /^[0-9]+$/;
-    const regexAlfanumerico = /^[A-Za-z0-9!@#$%^&*()_+]+$/;
 
     lista.forEach(elemento => {
         let esValido = true;
@@ -52,25 +81,18 @@ const is_valid = (event, selector) => {
         });
     });
 
-   //this es el formulario
-let checked = document.querySelectorAll('input[type=checkbox]:checked');
-if (checked.length == 0) {
-    //SINO HA SELECCIONADO
-    alert("ERROR");
-    return false;
-} else if (checked.length <= 2) {
-    //SINO HA SELECCIONADO MAS DE (5 o N) OPCIONES DISPONIBLES.
-    alert("ERROR");
-    return false;
-} 
+    let checked = document.querySelectorAll('input[type=checkbox]:checked');
+    if (checked.length <= 2) {
+        alert("Debes checkear al menos 2 lenguajes");
+        return false;
+    }
 
-let area_interes = "";
-for (let i = 0, length = checked.length; i < length; i++) {
-    area_interes += checked[i].value + ",";             
-}
+    let area_interes = "";
+    for (let i = 0, length = checked.length; i < length; i++) {
+        area_interes += checked[i].value + ",";
+    }
 
-}
+    return bandera;
+};
+
 export default is_valid;
-
-
-// DEBO DE HACER QUE NO PERMITA NI SIQUIERA COLOCAR NUMEROS EN LOS CAMPOS DE NOMBRE Y APELLIDO Y NO PERMITIR LETRAS EN DOCUMENTO Y TELEFONO

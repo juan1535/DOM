@@ -26,12 +26,12 @@ label.textContent = "Acepto los terminos y condiciones";
 $checkbox.setAttribute('type', "checkbox");
 
 // Insertar elementos en el DOM
+button.insertAdjacentElement("beforebegin", radioButtonsContainer);
 button.insertAdjacentElement("beforebegin", $checkbox);
 button.insertAdjacentElement("beforebegin", label);
-button.insertAdjacentElement("beforebegin", radioButtonsContainer);
 
-const agregarCheckbox = formulario.querySelector('#radioContainer');
-agregarCheckbox.insertAdjacentElement("afterend", checkboxContainer);
+const agregarCheckbox = formulario.querySelector('#telefono');
+agregarCheckbox.insertAdjacentElement("beforebegin", checkboxContainer);
 
 // Agregar estilos y opciones al select
 $select.classList.add("select");
@@ -41,7 +41,6 @@ opcionDefault.selected = true;
 $select.appendChild(opcionDefault);
 
 formulario.insertBefore($select, formulario.firstChild);
-
 // Llamada a la función para llenar el select con las ciudades
 funcionAsincronaCiudades($select);
 
@@ -61,8 +60,10 @@ cargarLenguajes(checkboxContainer); // Pasamos checkboxContainer como argumento
 
 // Asignar evento de submit al formulario
 formulario.addEventListener('submit', (event) => {
-    if (!is_valid(event, 'form [required]')) {
-        event.preventDefault();
+    if (is_valid(event, 'form input, form select, form textarea')) {
+        window.location.href = "login.html"; // Redirigir si la validación es correcta
+    } else {
+        event.preventDefault(); // Evitar el envío si la validación falla
     }
 });
 
